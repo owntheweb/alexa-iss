@@ -1,44 +1,6 @@
------------ COPY ONLY ABOVE THIS LINE: NOTES BELOW -----------
+Tests
 
-
-STATUS_METRIC
-
-location
-latitude
-longitude
-speed
-velocity
-altitude
-elevation
-status
-status update
-update
-position
-mass
-weight
-size
-dimensions
-volume
-orbital period
-period
-
-vector
-perigee
-apogee
-orbital inclination
-inclination
-days in orbit
-days occupied
-number of orbits
-number orbits
-orbits
-orbital decay
-decay
-crew
-crew members
-
-
-Tests (covers all slot values and skill functions for available intent):
+GetISSStatus intent tests (all status functions and Metric slots):
 Alexa, ask ISS where is it
 Alexa, tell ISS to get its location
 Alexa, tell ISS to give a position
@@ -58,14 +20,34 @@ Alexa, tell ISS to get the International Space Station's dimensions
 Alexa, ask ISS what is its volume
 Alexa, ask ISS to get its orbital periods
 
+GetISSStatusSpeed intent (no slots accepted):
+Alexa, ask ISS how fast it is
 
-FAQ:
+GetISSStatusPeriod intent (no slots accepted):
+Alexa, ask ISS how long does it take to orbit the earth
 
--...
+GetISSStatusSize (no slots accepted):
+Alexa, ask ISS how large is it
+
+GetISSStatusAltitude (no slots accepted)
+Alexa, ask ISS how high is it
 
 
 
 
+More for STATUS_METRIC soon:
 
-https://s3.amazonaws.com/alexaissinput/cardImageLarge.jpg
-https://s3.amazonaws.com/alexaissinput/cardImageLarge.jpg
+vector
+perigee
+apogee
+orbital inclination
+inclination
+days in orbit
+days occupied
+number of orbits
+number orbits
+orbits
+orbital decay
+decay
+crew
+crew members
