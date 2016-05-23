@@ -1,0 +1,6 @@
+*.DS_Store
+lambdaFuncitons/alexaISS/node_modules/*
+lambdaFuncitons/alexaISSGetTLEs/node_modules/*
+lambdaFuncitons/alexaISSGetClouds*
+lambdaFuncitons/alexaISSImageAPI*
+source/graphics/requestExpired.psd
