@@ -16,9 +16,42 @@ This skill was also created in an effort to better understand Amazon Web Service
 
 Need to report a bug or have a feature request? Please create an [issue here](https://github.com/owntheweb/alexa-iss/issues).
 
-## Setup Summary
+## Skill Ingredients
 
-*To be continued in shortly...*
+### AWS Lambda Functions
+
+* [alexaISS](https://github.com/owntheweb/alexa-iss/tree/master/lambdaFuncitons/alexaISS):
+  * Responds to Alexa skill requests
+  * Node.js script that needs dependencies installed prior to upload to AWS (see below)
+* [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/tree/master/lambdaFuncitons/alexaISSGetTLEs):
+  * Collects and caches TLE (Two Line Element) data needed to calculate ISS's orbital position
+  * Scheduled via AWS CloudWatch Rules to run once per day
+  * Node.js script that needs dependencies installed prior to upload to AWS (see below)
+
+### AWS DynamoDB Tables
+
+* alexaISSOrbitalObjects
+  * Caches TLE data collected by alexaISSGetTLEs Lambda function. TLE data changes every 1-3 days. Caching it here reduces skill request latency and prevents abuse of external APIs.
+* alexaISSLonLatLookup (experimental)
+  * Stores water body, country, state and city used in reverse geo lookups based on ISS's longitude and latitude. Its purpose is to reduce latency caused by additional API requests that can return most of this data, and reduce long-term costs by not needing to run an OSM server to handle reverse lookups in realtime.
+
+### Lon/Lat Lookup Table Generator Script
+
+[This script](https://github.com/owntheweb/alexa-iss/blob/master/source/makeLonLatLookupTable/makeLonLatLookupTable.py) uses shapefiles from Natural Earth to populate the alexaISSLonLatLookup table with water body, country, state and city for approximately 6,480,000 lon/lat points around the Earth (0.1 degree increments). 
+
+***Caution***: The table generator script is experimental and needs work. The resulting table has empty points and costs money to create (high DynamoDB capacity needed, lots of requests to handle). Next time: It may be better to generate this table with a OSM map server instead of shapefiles for improved performance and accuracy.
+
+### AWS Simple Storage Service (S3)
+
+The skill currently delivers icon images (shown in Alexa app) from an S3 bucket. This may expand in the future to store and deliver dynamically generated images.
+
+### AWS IAM User, Roles, Policies
+
+Under a root account, an IAM user with access keys is setup for local testing with IAM roles/policies attached that determine what the user can do with AWS. IAM roles are assigned to Lambda functions as well to restrict access to specific needs. See below for details.
+
+### Alexa Skill
+
+Alexa skills are setup in the [Amazon Developer Console](https://developer.amazon.com). This is where skills are tested on Amazon Echo devices and published. Intents, slots, and sample utterances for this skill are [available here](https://github.com/owntheweb/alexa-iss/tree/master/skill).
 
 ## Amazon Web Services Setup
 
@@ -26,18 +59,18 @@ Need to report a bug or have a feature request? Please create an [issue here](ht
 
 ## Local Installation
 
-For development purposes, this skill can be installed and tested locally prior to uploading to Amazon Web Services as a Lambda function. While it's possilble to alter and upload Lambda functions as a .zip file and test in AWS, frequent alterations may result in time savings if tested locally first.
+For development purposes, this skill can be installed and tested locally prior to uploading to Amazon Web Services as a Lambda function. While it's possible to alter and upload Lambda functions as a .zip file and test in AWS, frequent alterations may result in time savings if tested locally first.
 
 ### Clone Amazon Alexa ISS Skill Repository
 
-Note: Git is required to clonet this repository. Git Installation instructions can be found [here](https://help.github.com/articles/set-up-git/).
+Note: Git is required to clone this repository. Git Installation instructions can be found [here](https://help.github.com/articles/set-up-git/).
 
 ~~~
 cd ~/
 git clone git://github.com/owntheweb/alexa-iss.git
 ~~~
 
-#### Install Node.js Depencencies (required prior to upload)
+#### Install Node.js Dependencies (required prior to upload)
 
 The ISS skill functions run as Node.js (server-side JavaScript) Lambda functions. After [installing node](https://nodejs.org) if needed, install dependencies for the dependencies for the two functions.
 
