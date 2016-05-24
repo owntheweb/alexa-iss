@@ -209,7 +209,7 @@ function getWelcomeResponse(callback) {
 	var sessionAttributes = {};
 
 	var cardTitle = "International Space Station (ISS)";
-	var speechOutput = "International Space Station (ISS). Ask me something like, 'Where is ISS located?' or, 'What is the speed of ISS?'";
+	var speechOutput = "International Space Station (ISS). Say something like, 'how long does it take to orbit the Earth' or, 'give me a status update'. How would you like to proceed?";
 	// If the user either does not reply to the welcome message or says something that is not
 	// understood, they will be prompted again with this text.
 	var repromptText = "Ask something like, 'Where is ISS?'";
