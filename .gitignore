@@ -4,3 +4,11 @@ lambdaFuncitons/alexaISSGetTLEs/node_modules/*
 lambdaFuncitons/alexaISSGetClouds*
 lambdaFuncitons/alexaISSImageAPI*
 source/graphics/requestExpired.psd
+
+buckets/alexaissinput/day.png
+
+buckets/alexaissinput/night.png
+
+buckets/alexaissinput/requestExpired.png
+
+buckets/alexaissinput/xplanetclouds.jpg
