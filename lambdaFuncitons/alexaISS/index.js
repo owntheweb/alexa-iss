@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2016 Christopher Stevens (chris@christopherstevens.cc)
+Copyright (c) 2016 Christopher Stevens (www.christopherstevens.cc)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
