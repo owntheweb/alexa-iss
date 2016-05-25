@@ -6,8 +6,6 @@
 
 Where is the International Space Station right now? The International Space Station (ISS) Alexa Skill will tell you its longitude, latitude, speed, altitude and nearby geographical features as it orbits around the Earth faster than a speeding bullet.
 
-TLS data courtesy of [wheretheiss.at](http://wheretheiss.at). Geographic data made with [Natural Earth](http://www.naturalearthdata.com/).
-
 The ISS skill was created as part of an entry for the "Hey Alexa! The Amazon Alexa Skill Contest" at [Hackster.io](http://hackster.io) (contest entry link coming soon). With that, it has been posted here for your benefit. Contributions to improve the skill are also welcome.
 
 This skill was also created in an effort to better understand Amazon Web Services (AWS) Lambda functions, AWS Simple Storage Service (S3), AWS DynamoDB and AWS security policies and Node.js.
@@ -257,17 +255,17 @@ Configure to match your skill skill user account key/region settings (not recomm
 aws configure
 ~~~
 
-*To be continued in shortly...*
+Fill in prompts to match key information generated when creating the test user (see 'IAM User for Local Testing') above. When prompted, also make sure to enter the matching region where Lambda functions, DynamoDB tables and S3 were configured (e.g. 'us-east-1').
 
 ### Install lamnda-local via npm
 
-In order to run Lambda functions locally for testing, install lamnda-local globally.
+To run Lambda functions locally for testing, install the lamnda-local Node.js module globally.
 
 ~~~
 npm install -g lambda-local
 ~~~
 
-*To be continued in shortly...*
+!!! Add note about where the command lives on diferent platforms.
 
 ## Configure Scripts
 
@@ -285,11 +283,19 @@ npm install -g lambda-local
 
 * Enhance and recreate lonlatLookup table using OSM database/server instead of shapefiles.
 * Generate Alexa app images that show ISS on a map.
-* *To be continued in shortly...*
+* Create Space-Track.org TLE retrieval script; Space-Track.org a more direct source of data, requires submittal of [Orbital Data Request (ODR)](https://www.space-track.org/documentation) form.
 
 ## Thank You
 
-*To be continued in shortly...*
+TLS data API courtesy of [wheretheiss.at](http://wheretheiss.at).
+
+TLS data made available for public sharing by [Space-Track.Org](https://www.space-track.org)
+
+The [satellite.js](https://github.com/shashwatak/satellite-js) project makes position calculations/predictions possible.
+
+Geographic data made with [Natural Earth](http://www.naturalearthdata.com).
+
+Quality coffee makers everywhere.
 
 
 ### /// END DRAFT ///
