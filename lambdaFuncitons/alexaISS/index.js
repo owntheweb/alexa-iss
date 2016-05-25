@@ -66,14 +66,8 @@ let tleTable = 'alexaISSOrbitalObjects';
 // generated table containing major water body, country, state/provice and city for lons/lats rounded to 0.1 degree
 let lonLatLookupTable = 'alexaISSLonLatLookup';
 
-// data needed to create card images stored here, generated and delivered via seperate Lambda API request if/when requested
-let imageRequestTable = 'alexaISSImageRequests';
-
 // home of images used in this skill, inlcuding default response card large and small image
 let inputBucket = 'alexaissinput';
-
-// home of generated images that get auto-deleted after X hours (depending on preferred lifetime rules)
-let outputBucket = 'alexaissoutput';
 
 //////////////
 // includes //
@@ -88,10 +82,6 @@ let docClient = new doc.DynamoDB();
 
 // satellite.js
 let satellite = require('satellite.js');
-
-// Make http requests to get reverse geo lookup information
-// then-request makes async requests friendly in this example (consider using promises vs callbacks discussion)
-var request = require('then-request');
 
 
 //////////////////////////////
@@ -324,32 +314,6 @@ function getISSStatus(intent, session, callback) {
 					}
 				});
 
-				/* //started with using an API: added latency, no ocean data (but better in other ways, revisit)
-				var url = 'http://nominatim.openstreetmap.org/reverse?format=json&lat=' + satData.latitudeDeg + '&lon=' + satData.longitudeDeg + '&zoom=18&addressdetails=1&zoom=10';
-				var options = {
-					headers: {
-						'User-Agent': skillUserAgent,
-						'Accept-Language': 'en' // Alexa wasn't reading Chinese characters, but did pronounce Chinese words spelled in Latin characters
-					},
-					timeout: 2500,
-					socketTimeout: 2500
-				};
-
-				// make a reverse geo lookup at nominatim.openstreetmap.org and append point of interst data to satData
-				request('GET', url, options).done(function (res) {
-					if(res.statusCode < 300) {
-						satData = appendReverseGeoData(satData, res);
-					} else {
-						//there was an error getting detailed location information, don't stop!
-						satData.poi = 'a location I couldn\'t retrieve this time';
-						satData.country = '';
-						satData.state = '';
-						satData.city = '';
-					}
-					//!!! replace {} with session?
-					callback({}, buildISSStatusResponse(satData));
-				});
-				*/
 			} else {
 				throw "Calculated Latitude and Longitude Invalid";
 			}
@@ -591,19 +555,6 @@ function buildResponse(sessionAttributes, speechletResponse) {
 		sessionAttributes: sessionAttributes,
 		response: speechletResponse
 	};
-}
-
-// Generate a random 16 character string to serve as a new image request id for use with DynamoDB.
-// When (and if) people view their alexa app, loading the image will trigger the generation/delivery of
-// the image itself via a seperate Lambda API function, making use of this image request id.
-// thanks: http://stackoverflow.com/questions/1349404/generate-a-string-of-5-random-characters-in-javascript
-function generateImageRequestID() {
-	var text = "";
-	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	for( var i=0; i < 16; i++ ) {
-		text += possible.charAt(Math.floor(Math.random() * possible.length));
-	}
-	return text;
 }
 
 // round and add commas
