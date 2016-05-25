@@ -267,15 +267,19 @@ npm install -g lambda-local
 
 !!! Add note about where the command lives on diferent platforms.
 
-## Configure Scripts
+## Configure Lambda Functions
+
+After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
+
+## Local Testing
 
 *To be continued in shortly...*
 
-## Testing
+## Upload to AWS
 
 *To be continued in shortly...*
 
-## Alexa Skill Setup
+## Alexa Skill Setup and Testing
 
 *To be continued in shortly...*
 
