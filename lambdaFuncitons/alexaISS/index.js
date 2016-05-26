@@ -24,34 +24,6 @@ SOFTWARE.
 
 'use strict';
 
-//////////
-// todo //
-//////////
-
-/*
-
---- coming soon
-* dynamic card image plotting ISS and orbit path on a map (yeah!)
---- date calculations
-* days in orbit
-* days occupied
-* number of orbits?
---- satellite data math help needed (questions the satellite geeks may ask)
-* perigee
-* apogee
-* orbital inclination
-* orbit epoch?
-* orbital decay rate
---- larger feature requests
-* crew details (how many?, who?, how to keep up with these details?)
-* news (Where to grab the latest ISS-only news in a usable data feed with permission to use?)
-* FAQs (e.g. What do astronauts eat on ISS? Who built ISS? How do people go to the bathroom on ISS? [That's a common one])
-* ISS module details?
---- room to improve
-* regenerate lonlat lookup tabe using OSM database instead of shapefiles
-
-*/
-
 
 //////////////
 // settings //

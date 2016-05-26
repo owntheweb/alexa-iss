@@ -1,4 +1,4 @@
-# Amazon Alexa ISS Skill
+# International Space Station (ISS) Alexa Skill
 
 ![ISS skill icon](https://raw.githubusercontent.com/owntheweb/alexa-iss/master/source/graphics/alexaISSIcon108.jpg)
 
@@ -204,7 +204,7 @@ The alexaISSGetTLEs Lambda function will collect and cache TLE (Two Line Element
 
 For development purposes, this skill can be installed and tested locally prior to uploading to Amazon Web Services as a Lambda function and skill. While it's possible to alter and upload Lambda functions as a .zip file and test in AWS, frequent alterations may result in much time savings if tested locally first.
 
-### Clone Amazon Alexa ISS Skill Repository
+#### Clone Amazon Alexa ISS Skill Repository
 
 Note: Git is required to clone this repository. Git Installation instructions can be found [here](https://help.github.com/articles/set-up-git/).
 
@@ -261,7 +261,7 @@ Fill in prompts to match key information generated when creating the test user (
 
 After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
 
-### Install lambda-local
+## Install lambda-local
 
 To run Lambda functions locally for testing, install the [lamnda-local Node.js module](https://www.npmjs.com/package/lambda-local) globally.
 
@@ -316,11 +316,22 @@ lambda-local
 
 *To be continued in shortly...*
 
-## Todo
+## Todo/Wishlist
 
 * Enhance and recreate lonlatLookup table using OSM database/server instead of shapefiles.
 * Generate Alexa app images that show ISS on a map.
 * Create Space-Track.org TLE retrieval script; Space-Track.org a more direct source of data, requires submittal of [Orbital Data Request (ODR)](https://www.space-track.org/documentation) form.
+* Days in orbit
+* Days occupied
+* Number of orbits?
+* Perigee
+* Apogee
+* Orbital inclination
+* Orbital decay rate?
+* Crew details (how many?, who?, how to keep up with these details?)
+* News (Where to grab the latest ISS-only news in a usable data feed with permission to use?)
+* FAQs (e.g. What do astronauts eat on ISS? Who built ISS? How do people go to the bathroom on ISS? [That's a common one])
+* ISS module details?
 
 ## Thank You
 
