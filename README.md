@@ -257,25 +257,58 @@ aws configure
 
 Fill in prompts to match key information generated when creating the test user (see 'IAM User for Local Testing') above. When prompted, also make sure to enter the matching region where Lambda functions, DynamoDB tables and S3 were configured (e.g. 'us-east-1').
 
-### Install lamnda-local via npm
+## Configure Lambda Functions
 
-To run Lambda functions locally for testing, install the lamnda-local Node.js module globally.
+After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
+
+### Install lambda-local
+
+To run Lambda functions locally for testing, install the [lamnda-local Node.js module](https://www.npmjs.com/package/lambda-local) globally.
 
 ~~~
 npm install -g lambda-local
 ~~~
 
-!!! Add note about where the command lives on diferent platforms.
+As lambda-local installs, take note of the path of where it was installed. Example on a Mac:
 
-## Configure Lambda Functions
+~~~
+/Users/USERNAME/.node/bin/lambda-local -> /Users/USERNAME/.node/lib/node_modules/lambda-local/bin/lambda-local
+~~~
 
-After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
+To test this in terminal:
+
+~~~
+/Users/USERNAME/.node/bin/lambda-local 
+~~~
+
+This can also added to ~/.profile for faster use in the future with this line added near the bottom of the file before the `export PATH` line (again, may vary between Mac OS and other platforms):
+
+~~~
+PATH="/Users/USERNAME/.node/bin:$PATH"
+~~~
+
+If not present at the end of the file, add this line:
+
+~~~
+export PATH
+~~~
+
+After fully closing terminal and/or restarting, lambda-local can be executed with a simpler command:
+
+~~~
+lambda-local
+~~~
+
 
 ## Local Testing
 
 *To be continued in shortly...*
 
 ## Upload to AWS
+
+*To be continued in shortly...*
+
+## Remote Testing
 
 *To be continued in shortly...*
 
