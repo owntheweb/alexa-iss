@@ -105,8 +105,6 @@ Visit the [Policies section](https://console.aws.amazon.com/iam/home#policies) a
 
 Create a policy named "alexaISSReadDynamoDB" (could be any name) and enter the following policy configuration. This policy will allow test users and the skill functions to read (but not write) the alexaISSLonLatLookup and alexaISSOrbitalObjects tables. Note: Users for testing locally and roles assigned to Lambda functions will be assigned this policy later. Make sure to update the Amazon Resource Name (ARN) of the tables as needed in the policy (found on the DynamoDB table edit pages in the AWS console):
 
-***!!!*** This needs to be tested after edits. ***!!!***
-
 ~~~
 {
   "Version": "2012-10-17",
@@ -130,8 +128,6 @@ Create a policy named "alexaISSReadDynamoDB" (could be any name) and enter the f
 
 Create a policy named "alexaISSWriteDynamoDBTLEs". This policy, when assigned, will allow the scheduled alexaISSGetTLEs Lambda function to store/update retrieved TLE data for ISS orbital position calculations.
 
-***!!!*** This needs to be tested after edits. ***!!!***
-
 ~~~
 {
   "Version": "2012-10-17",
@@ -139,9 +135,7 @@ Create a policy named "alexaISSWriteDynamoDBTLEs". This policy, when assigned, w
     {
       "Sid": "",
       "Action": [
-        "dynamodb:GetItem",
-        "dynamodb:Query",
-        "dynamodb:Scan"
+        "dynamodb:PutItem"
       ],
       "Effect": "Allow",
       "Resource": "arn:aws:dynamodb:ZONEHERE:SOMENUMBERHERE:table/alexaISSOrbitalObjects"
@@ -152,8 +146,6 @@ Create a policy named "alexaISSWriteDynamoDBTLEs". This policy, when assigned, w
 
 Optional: Create a policy named "alexaISSWriteDynamoDBLonLat". This policy will allow test users that run the makeLonLatLookupTable.py script.
 
-***!!!*** This needs to be tested after edits. ***!!!***
-
 ~~~
 {
   "Version": "2012-10-17",
@@ -161,11 +153,7 @@ Optional: Create a policy named "alexaISSWriteDynamoDBLonLat". This policy will 
     {
       "Sid": "",
       "Action": [
-        "dynamodb:GetItem",
         "dynamodb:PutItem",
-        "dynamodb:Query",
-        "dynamodb:Scan",
-        "dynamodb:UpdateItem"
       ],
       "Effect": "Allow",
       "Resource": "arn:aws:dynamodb:ZONEHERE:SOMENUMBERHERE:table/alexaISSLonLatLookup"
@@ -209,7 +197,6 @@ For development purposes, this skill can be installed and tested locally prior t
 Note: Git is required to clone this repository. Git Installation instructions can be found [here](https://help.github.com/articles/set-up-git/).
 
 ~~~
-cd ~/
 git clone git://github.com/owntheweb/alexa-iss.git
 ~~~
 
@@ -257,13 +244,15 @@ aws configure
 
 Fill in prompts to match key information generated when creating the test user (see 'IAM User for Local Testing') above. When prompted, also make sure to enter the matching region where Lambda functions, DynamoDB tables and S3 were configured (e.g. 'us-east-1').
 
+***!!! test and document use of ~/.aws/credentials***
+
 ## Configure Lambda Functions
 
 After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
 
 ## Install lambda-local
 
-To run Lambda functions locally for testing, install the [lamnda-local Node.js module](https://www.npmjs.com/package/lambda-local) globally.
+To run Lambda functions locally for testing prior to uploading to AWS, install the [lamnda-local Node.js module](https://www.npmjs.com/package/lambda-local) globally.
 
 ~~~
 npm install -g lambda-local
