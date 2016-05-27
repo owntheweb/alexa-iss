@@ -32,6 +32,9 @@ SOFTWARE.
 // used to prevent someone else from configuring a skill that sends requests to this function (check skipped if '')
 let appID = '';
 
+//title of the skill to show in cards
+let skillTitle = 'Tracker for International Space Station (ISS)';
+
 // home of stored TLE data collected from api.wheretheiss.at or other source with scheduled Lambda function
 let tleTable = 'alexaISSOrbitalObjects';
 
@@ -147,7 +150,7 @@ function onIntent(intentRequest, session, callback) {
 		var intent = { slots: { Metric: { name: 'Metric', value: 'size' }}};
 		getISSStatus(intent, session, callback);
 	} else if("AMAZON.HelpIntent" === intentName) {
-		getWelcomeResponse(callback);
+		getHelpResponse(callback);
 	} else {
 		throw "Invalid intent";
 	}
@@ -170,11 +173,21 @@ function getWelcomeResponse(callback) {
 	// If we wanted to initialize the session to have some attributes we could add those here.
 	var sessionAttributes = {};
 
-	var cardTitle = "International Space Station (ISS)";
-	var speechOutput = "International Space Station (ISS). Say something like, 'how long does it take to orbit the Earth' or, 'give me a status update'. How would you like to proceed?";
+	var cardTitle = skillTitle + ": Welcome";
+	var speechOutput = skillTitle + ". Say something like, 'how long does it take to orbit the Earth' or, 'give me a status update'. How would you like to proceed?";
 	// If the user either does not reply to the welcome message or says something that is not
 	// understood, they will be prompted again with this text.
-	var repromptText = "Ask something like, 'Where is ISS?'";
+	var repromptText = "Ask something such as, 'Where is ISS?'";
+	var shouldEndSession = false;
+
+	callback(sessionAttributes, buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
+}
+
+function getHelpResponse(callback) {
+	var sessionAttributes = {};
+	var cardTitle = skillTitle + ": Help";
+	var speechOutput = "Track the status of the International Space Station (ISS). You can ask me questions such as, 'Where is the International Space Station?', 'How long does it take ISS to orbit the Earth?', 'How fast is ISS?'";
+	var repromptText = "Ask a question such as, 'What is the status of ISS?'";
 	var shouldEndSession = false;
 
 	callback(sessionAttributes, buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession));
