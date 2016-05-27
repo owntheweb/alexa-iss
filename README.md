@@ -293,8 +293,8 @@ lambda-local
 On Mac OS *(need to follow up and test on Linux)*, lambda-local and/or aws-sdk node modules were found to run partially independently from the installed AWS-CLI configuration. While researching this for future efforts, setting AWS configuration values as environment variables in terminal before running lambda-local tests resolved issues that were occuring. Note: If the terminal window is closed, enter the environment variables again before further testing.
 
 ~~~
-export AWS_ACCESS_KEY_ID='ACCESS_KEY_HERE'
-export AWS_SECRET_ACCESS_KEY='SECRET_ACCESS_KEY_HERE'
+export AWS_ACCESS_KEY_ID='TEST_USER_ACCESS_KEY_HERE'
+export AWS_SECRET_ACCESS_KEY='TEST_USER_SECRET_ACCESS_KEY_HERE'
 export AWS_REGION='us-east-1'
 ~~~
 
