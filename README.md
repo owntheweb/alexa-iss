@@ -300,7 +300,70 @@ export AWS_REGION='us-east-1'
 
 ## Local Testing
 
-*To be continued shortly...*
+Now that lambda-local is installed and AWS-CLI environment variables are set, here is an example of how to use lambda-local to test the alexaISS skill function, passing in data that invokes the GetISSStatus intent:
+
+~~~
+cd lambdaFuncitons/alexaISS
+lambda-local -l index.js -h handler -e testData/GetISSStatusIntent.js
+~~~
+
+Argument explanation:
+
+ - -l, --lambdapath [lambda file name] Specify Lambda function file name.
+ - -e, --eventpath [event data file name] Specify event data file name.
+ - -h, --handler [lambda-function handler name (optional)] Lambda function handler name. Default is "handler".
+
+When run, an Alexa skill format response should be printed in terminal:
+
+~~~
+Logs
+----
+START RequestId: 90edd3a8-e845-bbdc-4ce3-3cbb5d38e191
+onIntent requestId=request5678, sessionId=session1234
+END
+
+
+Message
+------
+{
+	"version": "1.0",
+	"sessionAttributes": {
+		"new": false,
+		"sessionId": "session1234",
+		"attributes": {},
+		"user": {
+			"userId": null
+		},
+		"application": {
+			"applicationId": "amzn1.echo-sdk-ams.app.[unique-value-here]"
+		}
+	},
+	"response": {
+		"outputSpeech": {
+			"type": "PlainText",
+			"text": "At a latitude of 47 and longitude of -151, ISS is currently traveling at 27,624 kilometers per hour at an altitude of 407 kilometers. That's 17,165 miles per hour at an altitude of 253 miles."
+		},
+		"card": {
+			"type": "Standard",
+			"title": "ISS Status",
+			"text": "At a latitude of 47 and longitude of -151, ISS is currently traveling at 27,624 kilometers per hour at an altitude of 407 kilometers. That's 17,165 miles per hour at an altitude of 253 miles.",
+			"image": {
+				"smallImageUrl": "https://s3.amazonaws.com/alexaissinput/cardImageSmall.jpg",
+				"largeImageUrl": "https://s3.amazonaws.com/alexaissinput/cardImageLarge.jpg"
+			}
+		},
+		"reprompt": {
+			"outputSpeech": {
+				"type": "PlainText",
+				"text": " "
+			}
+		},
+		"shouldEndSession": true
+	}
+}
+~~~
+
+Tests are available for all functions, intents and slot values.
 
 ## Upload to AWS
 
