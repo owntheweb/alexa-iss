@@ -58,6 +58,10 @@ Under a root account, an IAM user with access keys is setup for local testing wi
 
 Alexa skills are setup in the [Amazon Developer Console](https://developer.amazon.com). This is where skills are tested on Amazon Echo devices and published. Intents, slots, and sample utterances for this skill are [available here](https://github.com/owntheweb/alexa-iss/tree/master/skill).
 
+## How It Works
+
+*To be continued shortly...*
+
 ## Amazon Web Services Setup
 
 To start, [sign up](https://console.aws.amazon.com) for an AWS account if needed. 
@@ -244,8 +248,6 @@ aws configure
 
 Fill in prompts to match key information generated when creating the test user (see 'IAM User for Local Testing') above. When prompted, also make sure to enter the matching region where Lambda functions, DynamoDB tables and S3 were configured (e.g. 'us-east-1').
 
-***!!! test and document use of ~/.aws/credentials***
-
 ## Configure Lambda Functions
 
 After installing nodejs dependencies (see Install Node.js Dependencies above), update the settings sections near the top of the [alexaISS](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISS/index.js) and [alexaISSGetTLEs](https://github.com/owntheweb/alexa-iss/blob/master/lambdaFuncitons/alexaISSGetTLEs/index.js) Lambda function index.js files. Ensure that bucket names and DynamoDB table names match the existing names that were setup in AWS.
@@ -288,22 +290,29 @@ After fully closing terminal and/or restarting, lambda-local can be executed wit
 lambda-local
 ~~~
 
+On Mac OS *(need to follow up and test on Linux)*, lambda-local and/or aws-sdk node modules were found to run partially independently from the installed AWS-CLI configuration. While researching this for future efforts, setting AWS configuration values as environment variables in terminal before running lambda-local tests resolved issues that were occuring. Note: If the terminal window is closed, enter the environment variables again before further testing.
+
+~~~
+export AWS_ACCESS_KEY_ID='ACCESS_KEY_HERE'
+export AWS_SECRET_ACCESS_KEY='SECRET_ACCESS_KEY_HERE'
+export AWS_REGION='us-east-1'
+~~~
 
 ## Local Testing
 
-*To be continued in shortly...*
+*To be continued shortly...*
 
 ## Upload to AWS
 
-*To be continued in shortly...*
+*To be continued shortly...*
 
 ## Remote Testing
 
-*To be continued in shortly...*
+*To be continued shortly...*
 
 ## Alexa Skill Setup and Testing
 
-*To be continued in shortly...*
+*To be continued shortly...*
 
 ## Todo/Wishlist
 
