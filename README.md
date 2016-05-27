@@ -14,13 +14,6 @@ This skill was also created in an effort to better understand Amazon Web Service
 
 Need to report a bug or have a feature request? Please create an [issue here](https://github.com/owntheweb/alexa-iss/issues).
 
----
-
----
-
----
-### /// START DRAFT ///
-
 ## Skill Ingredients
 
 #### AWS Lambda Functions
@@ -405,15 +398,6 @@ The [satellite.js](https://github.com/shashwatak/satellite-js) project makes pos
 Geographic data made with [Natural Earth](http://www.naturalearthdata.com).
 
 Quality coffee makers everywhere.
-
-
-### /// END DRAFT ///
-
----
-
----
-
----
 
 ## Legal
 
