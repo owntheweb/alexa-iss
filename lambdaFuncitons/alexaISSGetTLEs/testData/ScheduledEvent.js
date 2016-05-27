@@ -1,7 +1,10 @@
 // test data for local event data tests
 // tested utilizing https://www.npmjs.com/package/lambda-local
 
-// $NODE_PATH -l index.js -h handler -e testData/ScheduledEventTestRequestData.js 
+// To use: 
+// cd lambdaFuncitons/alexaISSGetTLEs
+// lambda-local -l index.js -h handler -e testData/ScheduledEvent.js 
+
 module.exports = {
   "account": "123456789012",
   "region": "us-east-1",

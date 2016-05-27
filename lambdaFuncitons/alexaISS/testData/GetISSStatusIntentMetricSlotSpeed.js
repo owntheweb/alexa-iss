@@ -3,7 +3,7 @@
 
 // To use: 
 // cd lambdaFuncitons/alexaISS
-// lambda-local -l index.js -h handler -e testData/AMAZON.HelpIntent.js 
+// lambda-local -l index.js -h handler -e testData/GetISSStatusIntentMetricSlotSpeed.js
 
 module.exports = {
   "session": {
@@ -20,7 +20,13 @@ module.exports = {
   "version": "1.0",
   "request": {
     "intent": {
-      "name": "AMAZON.HelpIntent"
+      "slots": {
+        "Metric": {
+          "name": "Metric",
+          "value": "speed"
+        }
+      },
+      "name": "GetISSStatus"
     },
     "type": "IntentRequest",
     "requestId": "request5678"

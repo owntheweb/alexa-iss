@@ -1,7 +1,10 @@
 // test data for local event data tests
 // tested utilizing https://www.npmjs.com/package/lambda-local
 
-// $NODE_PATH -l index.js -h handler -e testData/GetIssLocationTestRequestData.js 
+// To use: 
+// cd lambdaFuncitons/alexaISS
+// lambda-local -l index.js -h handler -e testData/GetISSStatusAltitudeIntent.js
+
 module.exports = {
   "session": {
     "new": false,
@@ -17,13 +20,7 @@ module.exports = {
   "version": "1.0",
   "request": {
     "intent": {
-      "slots": {
-        "Metric": {
-          "name": "Metric",
-          "value": "location"
-        }
-      },
-      "name": "GetISSStatus"
+      "name": "GetISSStatusAltitude"
     },
     "type": "IntentRequest",
     "requestId": "request5678"
