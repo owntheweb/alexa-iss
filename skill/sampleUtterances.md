@@ -118,6 +118,47 @@ GetISSStatus to report International Space Station's {Metric}
 GetISSStatus to report the International Space Station's {Metric}
 GetISSStatus to report International Space Station {Metric}
 GetISSStatus to report the International Space Station {Metric}
+GetISSStatus get its {Metric}
+GetISSStatus get your {Metric}
+GetISSStatus get a {Metric}
+GetISSStatus get an {Metric}
+GetISSStatus get the {Metric}
+GetISSStatus get ISS's {Metric}
+GetISSStatus get International Space Station's {Metric}
+GetISSStatus get the International Space Station's {Metric}
+GetISSStatus get International Space Station {Metric}
+GetISSStatus get the International Space Station {Metric}
+GetISSStatus give me its {Metric}
+GetISSStatus give me your {Metric}
+GetISSStatus give me the {Metric}
+GetISSStatus give me a {Metric}
+GetISSStatus give me a status update
+GetISSStatus give me an {Metric}
+GetISSStatus give me ISS's {Metric}
+GetISSStatus give me International Space Station's {Metric}
+GetISSStatus give me the International Space Station's {Metric}
+GetISSStatus give me International Space Station {Metric}
+GetISSStatus give me the International Space Station {Metric}
+GetISSStatus give its {Metric}
+GetISSStatus give your {Metric}
+GetISSStatus give the {Metric}
+GetISSStatus give a {Metric}
+GetISSStatus give an {Metric}
+GetISSStatus give ISS's {Metric}
+GetISSStatus give International Space Station's {Metric}
+GetISSStatus give the International Space Station's {Metric}
+GetISSStatus give International Space Station {Metric}
+GetISSStatus give the International Space Station {Metric}
+GetISSStatus report its {Metric}
+GetISSStatus report your {Metric}
+GetISSStatus report the {Metric}
+GetISSStatus report a {Metric}
+GetISSStatus report an {Metric}
+GetISSStatus report ISS's {Metric}
+GetISSStatus report International Space Station's {Metric}
+GetISSStatus report the International Space Station's {Metric}
+GetISSStatus report International Space Station {Metric}
+GetISSStatus report the International Space Station {Metric}
 GetISSStatus {Metric}
 GetISSStatus for the {Metric}
 GetISSStatus for its {Metric}
