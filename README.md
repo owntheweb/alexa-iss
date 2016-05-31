@@ -1,14 +1,12 @@
-# International Space Station (ISS) Alexa Skill
+# ISS Tracker Alexa Skill
 
 ![ISS skill icon](https://raw.githubusercontent.com/owntheweb/alexa-iss/master/source/graphics/alexaISSIcon108.jpg)
 
 ## Overview
 
-Where is the International Space Station right now? The International Space Station (ISS) Alexa Skill will tell you its longitude, latitude, speed, altitude and nearby geographical features as it orbits around the Earth faster than a speeding bullet.
+Where is the International Space Station right now? The ISS Tracker Alexa Skill will tell you its longitude, latitude, speed, altitude and nearby geographical features as it orbits around the Earth faster than a speeding bullet.
 
-The ISS skill was created as part of an entry for the "Hey Alexa! The Amazon Alexa Skill Contest" at [Hackster.io](http://hackster.io) (contest entry link coming soon). With that, it has been posted here for your benefit. Contributions to improve the skill are also welcome.
-
-This skill was also created in an effort to better understand Amazon Web Services (AWS) Lambda functions, AWS Simple Storage Service (S3), AWS DynamoDB and AWS security policies and Node.js.
+This skill was created in an effort to better understand Amazon Web Services (AWS) Lambda functions, AWS Simple Storage Service (S3), AWS DynamoDB, AWS EC2, AWS security policies and Node.js. Additional contributions are welcome!
 
 ## Support
 
