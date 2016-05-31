@@ -51,7 +51,9 @@ Alexa skills are setup in the [Amazon Developer Console](https://developer.amazo
 
 ## How It Works
 
-*To be continued shortly...*
+![ISS skill icon](https://raw.githubusercontent.com/owntheweb/alexa-iss/master/source/graphics/skillSchematic.jpg)
+
+Humans (or other vocal things) ask Alexa for the status of ISS. A response is calculated and returned by the alexaISS Lambda function after accessing stored TLE (two line element) data and nearby geographical features from the DynamoDB tables. Scheduled to run once per day, the alexaISSGetTLEs function retrieves and stores TLE data from the wheretheiss.at API. During setup of the skill, an GDAL-configured Ubuntu EC2 instance is launched and generates the geographic feature table later referenced by the skill (only run once during setup). All functions and tables run within the Amazon Web Services (AWS) services, with access policies configured using AWS IAM policies.
 
 ## Amazon Web Services Setup
 
