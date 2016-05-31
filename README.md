@@ -360,15 +360,11 @@ Tests are available for all functions, intents and slot values.
 
 ## Upload to AWS
 
-*To be continued shortly...*
-
-## Remote Testing
-
-*To be continued shortly...*
+Follow Amazon's [instructions here](http://docs.aws.amazon.com/lambda/latest/dg/nodejs-create-deployment-pkg.html) (you'll want to zip up everything inside the Lambda function folder and upload as a zip on the Lambda function configuration page).
 
 ## Alexa Skill Setup and Testing
 
-*To be continued shortly...*
+Sign in at the Amazon Developer console, and follow [Amazon's instructions here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/overviews/steps-to-build-a-custom-skill). [Sample utterances](https://raw.githubusercontent.com/owntheweb/alexa-iss/master/skill/sampleUtterances.md) can be copied from the project page, along with the [intent schema](https://raw.githubusercontent.com/owntheweb/alexa-iss/master/skill/intentSchema.md).
 
 ## Generate alexaISSLonLatLookup DynamoDB Table
 
@@ -452,7 +448,17 @@ Write capacity for the alexaISSLonLatLookup table needs to be greatly increased 
 
 ***Important:*** Increasing capacity incurs more costs over time ($242 over a month at the time of writing if left active). Be sure to take this back down to 5 as soon as the table generating script is finished running to prevent large charges.
 
-*To be continued shortly...*
+The last step is to run the generator script. This will take hours and it's good to monitor the metrics available in the "Metrics" tab (updated every minute) to track usage.
+
+~~~
+nohup nice -n 10 python makeLonLatLookupTable.py "-1800" "1800" "-900" "0" "i01p01" &
+nohup nice -n 10 python makeLonLatLookupTable.py "-1800" "1800" "0" "900" "i01p02" &
+
+~~~
+
+The above example will run two processes at the same time, one handling the lower half of Earth, the other handling the upper hemisphere. Note: it was found that the upper hemisphere takes much longer to process. It may be wise to split this up differently next round.
+
+***Reminder:*** Use at your own risk!
 
 ## Todo/Wishlist
 
@@ -482,6 +488,8 @@ The [satellite.js](https://github.com/shashwatak/satellite-js) project makes pos
 Geographic data made with [Natural Earth](http://www.naturalearthdata.com).
 
 Quality coffee makers everywhere.
+
+The [Space Foundation](http://www.spacefoundation.org) that enspires me to explore space in ways that I can!
 
 ## Legal
 
