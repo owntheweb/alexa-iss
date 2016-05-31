@@ -244,6 +244,10 @@ GetISSStatusPeriod how long does it take to orbit the earth
 GetISSStatusPeriod how long does it take to orbit
 GetISSStatusPeriod how long does it take for you to orbit the earth
 GetISSStatusPeriod how long does it take for you to orbit
+GetISSStatusPeriod how long does it take for ISS to orbit the earth
+GetISSStatusPeriod how long does it take for ISS to orbit
+GetISSStatusPeriod how long does it take ISS to orbit the earth
+GetISSStatusPeriod how long does it take ISS to orbit
 GetISSStatusPeriod how long is an orbit
 GetISSStatusPeriod how long is the orbit
 GetISSStatusPeriod what is the length of time it takes to orbit the earth
