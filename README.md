@@ -370,6 +370,90 @@ Tests are available for all functions, intents and slot values.
 
 *To be continued shortly...*
 
+## Generate alexaISSLonLatLookup DynamoDB Table
+
+The alexaISSLonLatLookup table stores water body, country, state and city for every 0.1 degree longitude/latitude increments covering the Earth. This data is optional and the skill will work as long as the alexaISSLonLatLookup table and access policies are in place (empty or not).
+
+***EXPERIMENTAL, COSTS INVOLVED:*** The resulting table takes several hours to create. It requires high write capacity and adds millions of records (costs involved). Accuracy is not 100% with some land areas returning empty values. It's recommended to revisit this process utilizing an OSM database and not use shapefiles when generating this database. Benefit: No need to run an OSM server or other server/service (which can cost more money over time).
+
+While any configured computer could be used to generate the alexaISSLonLatLookup table, configuration time (and possibly network transfer time) was saved by launching a pre-configured community GDAL server on AWS Elastic Compute Cloud (EC2).
+
+Visit the [AWS EC2 section](https://console.aws.amazon.com/ec2/v2/home) of the AWS console and choose the "Launch Instance" button. Open the "Community AMIs" panel on the left and search for "GDAL". At the time of writing, an Ubuntu instance of "ubuntu-precise-12.04-amd64-cartodb-dev-geos-postgis-gdal-sqlapi-windshaft-cartodb" was chosen. Choose the "Select" button. A compute optimized instant type is recommended (c3.xlarge was chosen at the time of writing). Choose the "Review and Launch" button. Review then choose the "Launch" button.
+
+***Important:*** A c3.xlarge instance runs at $0.21/hour at the time of writing. If left running after the the script is finished for a month, thats over $150 (terminate the instance when finished to save money).
+
+In the key pair window, choose "Create a new key pair", give it a name (e.g. alexaISSEC2KeyPair) then download the file. Move the file to a safe place that can be accessed from terminal. Check that you acknolodge then choose the "Launch Instances" button. A note mentioning "Your instances are now launching" is shown. Choose the instance name/link mentioned in the message to visit the instances list.
+
+To connect via terminal, select the instance in the list, then choose the "Connect" button. A window will show with important access information. Based on that information, change the file permissions of the key pair for access requirements:
+
+~~~
+cd folder/with/keypair
+chmod 400 alexaISSEC2KeyPair.pem
+~~~
+
+Then login using the downloaded key pair (this file can be reused):
+
+~~~
+ssh -i "alexaISSEC2KeyPair.pem" ubuntu@ec2-XXX-XXX-XXX-XXX.compute-X.amazonaws.com
+~~~
+
+Install Python requirements (saving time as these requirements require other GDAL-related programs):
+
+~~~
+#upgrade pip
+sudo pip install setuptools --no-use-wheel --upgrade
+
+#AWS SDK for Python (Boto3)
+sudo pip install boto3
+
+#AWS-CLI
+sudo pip install awscli
+~~~
+
+Configure AWS-CLI with same test user info as local setup:
+
+~~~
+aws configure
+
+#!!! CHECK IF STILL NEEDED NEXT ROUND:
+#set AWS-CLI environment variables:
+export AWS_ACCESS_KEY_ID='TEST_USER_ACCESS_KEY_HERE'
+export AWS_SECRET_ACCESS_KEY='TEST_USER_SECRET_ACCESS_KEY_HERE'
+export AWS_REGION='us-east-1'
+~~~
+
+Download shapefiles from [Natural Earth](http://www.naturalearthdata.com):
+
+~~~
+#get countries
+wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip
+unzip ne_10m_admin_0_countries.zip
+
+# get states/provinces
+wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip
+unzip ne_10m_admin_1_states_provinces.zip
+
+# get points for populated placces e.g. cities
+wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip
+unzip ne_10m_populated_places_simple.zip
+
+# get water coverage and names
+wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/physical/ne_50m_geography_marine_polys.zip
+unzip ne_50m_geography_marine_polys.zip
+~~~
+
+Download the table generating script from the [project source](https://github.com/owntheweb/alexa-iss/blob/master/source/makeLonLatLookupTable/makeLonLatLookupTable.py):
+
+~~~
+wget https://raw.githubusercontent.com/owntheweb/alexa-iss/master/source/makeLonLatLookupTable/makeLonLatLookupTable.py
+~~~
+
+Write capacity for the alexaISSLonLatLookup table needs to be greatly increased to handle bulk write requests (6,480,000ish records over a few hours). In a browser, visit the [DynamoDB section](https://console.aws.amazon.com/dynamodb/home) of the AWS console and choose the "alexaISSLonLatLookup" table. In the "Capacity" tab, set the write capacity to 500 and choose the "Save" button.
+
+***Important:*** Increasing capacity incurs more costs over time ($242 over a month at the time of writing if left active). Be sure to take this back down to 5 as soon as the table generating script is finished running to prevent large charges.
+
+*To be continued shortly...*
+
 ## Todo/Wishlist
 
 * Enhance and recreate lonlatLookup table using OSM database/server instead of shapefiles.
