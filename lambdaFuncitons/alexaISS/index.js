@@ -33,7 +33,7 @@ SOFTWARE.
 let appID = '';
 
 //title of the skill to show in cards
-let skillTitle = 'Tracker for International Space Station (ISS)';
+let skillTitle = 'Tracker for ISS';
 
 // home of stored TLE data collected from api.wheretheiss.at or other source with scheduled Lambda function
 let tleTable = 'alexaISSOrbitalObjects';
